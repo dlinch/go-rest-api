@@ -54,6 +54,7 @@ func GetPerson(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func CreatePerson(w http.ResponseWriter, r *http.Request) {
+	// TODO: This isn't properly assigning incoming json keys to the person struct
 	fmt.Printf("CreatePerson run!\n")
 	params := mux.Vars(r)
 	var person Person
