@@ -37,13 +37,13 @@ func main() {
 }
 
 func GetPeople(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("GetPeople run!")
+	fmt.Printf("GetPeople run!\n")
 
 	json.NewEncoder(w).Encode(people)
 }
 
 func GetPerson(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("GetPerson run!")
+	fmt.Printf("GetPerson run!\n")
 
 	params := mux.Vars(r)
 	for _, item := range people {
@@ -54,6 +54,7 @@ func GetPerson(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func CreatePerson(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("CreatePerson run!\n")
 	params := mux.Vars(r)
 	var person Person
 	_ = json.NewDecoder(r.Body).Decode(&person)
@@ -63,10 +64,11 @@ func CreatePerson(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeletePerson(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("DeletePerson run!\n")
 	params := mux.Vars(r)
 	for index, item := range people {
 		if item.ID == params["id"] {
-			people = append(people[:index], people[:index+1]...)
+			people = append(people[:index], people[index+1:]...)
 			break
 		}
 	}
